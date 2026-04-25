@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Movie — MoviePulse</title>
+  </head>
+  <body>
+    <header class="topnav">
+      <a href="./index.html" class="topnav-logo">
+        <img src="./assets/logo.png" alt="MoviePulse" /><span>MoviePulse</span>
+      </a>
+      <div class="topnav-actions">
+        <a href="./search.html" class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <button id="profileBtn" class="icon-btn"><i class="fa-solid fa-user"></i></button>
+        <div id="profileMenu" class="dropdown-menu">
+          <a href="./account.html"><i class="fa-solid fa-user-circle"></i> My Account</a>
+          <a href="./subscription.html"><i class="fa-solid fa-crown"></i> Subscription</a>
+          <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page movie-page">
+      <div id="movieDetail" class="movie-detail">
+        <div class="loader-center"><div class="spinner"></div></div>
+      </div>
+    </main>
+
+    <!-- Video Player Overlay -->
+    <div id="playerOverlay" class="player-overlay" hidden>
+      <button class="player-close" id="playerClose"><i class="fa-solid fa-xmark"></i></button>
+      <video id="videoEl" playsinline></video>
+      <div id="adOverlay" class="ad-overlay" hidden>
+        <div class="ad-label">Advertisement</div>
+        <button id="skipAdBtn" class="btn btn-primary skip-ad" hidden></button>
+      </div>
+      <div id="subscribeGate" class="subscribe-gate" hidden>
+        <i class="fa-solid fa-crown gate-icon"></i>
+        <h2>Premium Content</h2>
+        <p>Subscribe to unlock unlimited streaming with no ads.</p>
+        <a href="./subscription.html" class="btn btn-primary">View Plans</a>
+      </div>
+      <div id="playerControls" class="player-controls">
+        <button id="playPauseBtn"><i class="fa-solid fa-play"></i></button>
+        <input type="range" id="seekBar" min="0" max="100" value="0" />
+        <span id="timeDisplay">0:00 / 0:00</span>
+        <button id="fullscreenBtn"><i class="fa-solid fa-expand"></i></button>
+      </div>
+    </div>
+
+    <!-- Trailer overlay -->
+    <div id="trailerOverlay" class="player-overlay" hidden>
+      <button class="player-close" id="trailerClose"><i class="fa-solid fa-xmark"></i></button>
+      <video id="trailerVideo" controls playsinline></video>
+    </div>
+
+    <!-- Share sheet -->
+    <div id="shareSheet" class="share-sheet" hidden>
+      <div class="share-sheet-inner glass">
+        <div class="share-head">
+          <img id="shareThumb" alt="" />
+          <div>
+            <strong id="shareTitle">Share this movie</strong>
+            <small>Send to your friends</small>
+          </div>
+          <button class="close-x" id="shareClose">&times;</button>
+        </div>
+        <div class="share-grid">
+          <button data-share="whatsapp" class="share-btn wa"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></button>
+          <button data-share="facebook" class="share-btn fb"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></button>
+          <button data-share="twitter" class="share-btn tw"><i class="fa-brands fa-x-twitter"></i><span>Twitter</span></button>
+          <button data-share="telegram" class="share-btn tg"><i class="fa-brands fa-telegram"></i><span>Telegram</span></button>
+          <button data-share="copy" class="share-btn cp"><i class="fa-solid fa-link"></i><span>Copy Link</span></button>
+          <button data-share="more" class="share-btn mr"><i class="fa-solid fa-ellipsis"></i><span>More</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report modal -->
+    <div id="reportModal" class="modal" hidden>
+      <div class="modal-card glass">
+        <button class="close-x" id="reportClose">&times;</button>
+        <h2>Report Broken Video</h2>
+        <p>Help us improve. Tell us what's wrong.</p>
+        <select id="reportReason" class="input">
+          <option value="not_playing">Video not playing</option>
+          <option value="audio">No audio</option>
+          <option value="quality">Poor quality</option>
+          <option value="wrong">Wrong movie</option>
+          <option value="other">Other</option>
+        </select>
+        <textarea id="reportMessage" class="input" rows="3" placeholder="Optional message..."></textarea>
+        <button id="reportSubmit" class="btn btn-primary">Submit Report</button>
+      </div>
+    </div>
+
+    <nav class="bottomnav" data-page="home">
+      <a href="./index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="./search.html"><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
+      <a href="./series.html"><i class="fa-solid fa-clapperboard"></i><span>Series</span></a>
+      <a href="./downloads.html"><i class="fa-solid fa-download"></i><span>Downloads</span></a>
+      <a href="./account.html"><i class="fa-solid fa-user"></i><span>Account</span></a>
+    </nav>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <script type="module" src="./js/firebase.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
