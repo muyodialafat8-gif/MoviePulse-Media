@@ -1,16 +1,16 @@
-function register(){
-let email=document.getElementById("email").value;
-let pass=document.getElementById("password").value;
+const firebaseConfig = {
+apiKey: "AIzaSyDe6N4Fgl02pz-27N5sDCZhVB5X_SHTiPI",
+authDomain: "moviepulse-256.firebaseapp.com",
+projectId: "moviepulse-256"
+};
 
-auth.createUserWithEmailAndPassword(email,pass)
-.then(res=>{
-return db.collection("users").doc(res.user.uid).set({
-email:email,
-favorites:[],
-downloads:[],
-continueWatching:[],
-subscriptionStatus:"none",
-createdAt:Date.now()
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let settings = {};
+
+db.collection("settings").doc("main").onSnapshot(doc=>{
+settings = doc.data() || {};
 });
-});
-}

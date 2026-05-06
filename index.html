@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MoviePulse</title>
+
+<link rel="stylesheet" href="./css/styles.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script defer src="./js/firebase.js"></script>
+<script defer src="./js/app.js"></script>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+<img src="./assets/logo.png" class="logo">
+<h1 class="logo-text">MoviePulse</h1>
+<div class="dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- WELCOME -->
+<div id="welcomePopup" class="modal hidden">
+<div class="modal-box">
+<h2>Welcome to MoviePulse</h2>
+<p>Join our community for updates!</p>
+<a href="https://whatsapp.com/channel/0029Vb73dtF5kg76mEEo1L3a" target="_blank">
+<button class="btn green">Join WhatsApp</button>
+</a>
+<p class="link" onclick="closeWelcome()">Maybe later</p>
+</div>
+</div>
+
+<!-- NOTIFICATION -->
+<div id="notifPopup" class="modal hidden">
+<div class="modal-box">
+<h2>Stay Updated!</h2>
+<button class="btn" onclick="enableNotif()">Enable Notifications</button>
+<p class="link" onclick="closeNotif()">Later</p>
+</div>
+</div>
+
+<!-- HEADER -->
+<header>
+<img src="./assets/logo.png" class="logo-small" onclick="goHome()">
+<div>
+<button onclick="goSearch()">🔍</button>
+<button onclick="goAccount()">👤</button>
+</div>
+</header>
+
+<!-- HERO -->
+<div id="hero" class="hero"></div>
+
+<!-- AD -->
+<a id="bannerAd" target="_blank">
+<img id="bannerImg">
+</a>
+
+<h2>Trending</h2>
+<div id="trending" class="row"></div>
+
+<!-- NAV -->
+<nav class="bottom-nav">
+<button onclick="goHome()">🏠</button>
+<button onclick="goSearch()">🔍</button>
+<button onclick="goSeries()">📺</button>
+<button onclick="goDownloads()">⬇</button>
+<button onclick="goAccount()">👤</button>
+</nav>
+
+<div id="toast"></div>
+
+</body>
+</html>
