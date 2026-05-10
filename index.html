@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="MoviePulse - Premium Streaming Platform">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <title>MoviePulse - Stream Movies & Series</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDe6N4Fgl02pz-27N5sDCZhVB5X_SHTiPI",
+            authDomain: "moviepulse-256.firebaseapp.com",
+            projectId: "moviepulse-256",
+            storageBucket: "moviepulse-256.appspot.com",
+            messagingSenderId: "673829570223",
+            appId: "1:673829570223:web:6613983b25d600c7aff65a",
+            measurementId: "G-NKWC9FN1YX"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        window.auth = auth;
+        window.db = db;
+        
+        // Handle auth state
+        onAuthStateChanged(auth, (user) => {
+            if (!user && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('register.html')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</head>
+<body class="dark">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <img src="assets/logo.png" alt="MoviePulse" class="loading-logo">
+            <div class="loading-text">MOVIEPULSE</div>
+            <div class="loading-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <img src="assets/logo.png" alt="MoviePulse">
+                <span>MOVIEPULSE</span>
+            </div>
+            <div class="top-nav-actions">
+                <button class="icon-btn" onclick="window.location.href='search.html'">🔍</button>
+                <button class="icon-btn" id="settings-gear">⚙️</button>
+                <button class="icon-btn" id="profile-btn">👤</button>
+            </div>
+        </nav>
+
+        <!-- Settings Modal (Gear) -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content glass">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-section">
+                        <h3>Appearance</h3>
+                        <div class="setting-item">
+                            <label>Theme</label>
+                            <select id="theme-select">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                                <option value="auto">Auto (Follow System)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Card Size</label>
+                            <select id="card-size">
+                                <option value="normal">Normal</option>
+                                <option value="compact">Compact</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Playback</h3>
+                        <div class="setting-item">
+                            <label>Autoplay Next Episode</label>
+                            <input type="checkbox" id="autoplay-next">
+                        </div>
+                        <div class="setting-item">
+                            <label>Video Quality</label>
+                            <select id="video-quality">
+                                <option value="auto">Auto</option>
+                                <option value="720">720p</option>
+                                <option value="1080">1080p</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Double-tap Skip (seconds)</label>
+                            <select id="skip-seconds">
+                                <option value="5">5 seconds</option>
+                                <option value="10">10 seconds</option>
+                                <option value="15">15 seconds</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Downloads</h3>
+                        <div class="setting-item">
+                            <label>Download over Wi-Fi only</label>
+                            <input type="checkbox" id="wifi-only-download">
+                        </div>
+                        <div class="setting-item">
+                            <label>Max Storage Limit</label>
+                            <select id="storage-limit">
+                                <option value="2">2 GB</option>
+                                <option value="5">5 GB</option>
+                                <option value="unlimited">Unlimited</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>Privacy & Security</h3>
+                        <button id="clear-history-btn" class="danger-btn">Clear Watch History</button>
+                        <button id="logout-all-devices" class="danger-btn">Log Out from All Devices</button>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h3>About</h3>
+                        <p><a href="#" id="whatsapp-link">WhatsApp Channel</a></p>
+                        <p><a href="#" id="privacy-link">Privacy Policy</a></p>
+                        <p><a href="#" id="terms-link">Terms of Service</a></p>
+                        <p>Version: v1.0.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item active" data-page="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+                <span class="nav-dot"></span>
+            </a>
+            <a href="search.html" class="nav-item" data-page="search">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-label">Search</span>
+                <span class="nav-dot"></span>
+            </a>
+            <a href="series.html" class="nav-item" data-page="series">
+                <span class="nav-icon">📺</span>
+                <span class="nav-label">Series</span>
+                <span class="nav-dot"></span>
+            </a>
+            <a href="downloads.html" class="nav-item" data-page="downloads">
+                <span class="nav-icon">⬇️</span>
+                <span class="nav-label">Downloads</span>
+                <span class="nav-dot"></span>
+            </a>
+            <a href="account.html" class="nav-item" data-page="account">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Account</span>
+                <span class="nav-dot"></span>
+            </a>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-container">
+            <!-- Hero Slider -->
+            <section class="hero-slider" id="hero-slider">
+                <div class="hero-track" id="hero-track"></div>
+                <div class="hero-dots" id="hero-dots"></div>
+            </section>
+
+            <!-- Dynamic Sections Container -->
+            <div id="sections-container"></div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
