@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>MoviePulse - Subscription Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="assets/logo.png" alt="MoviePulse" class="loading-logo">
+            <h1 class="loading-title">MOVIEPULSE</h1>
+            <div class="loading-dots"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="nav-left"><img src="assets/logo.png" class="nav-logo" onclick="location.href='index.html'"></div>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="location.href='search.html'">🔍</button>
+            <button class="nav-icon-btn" id="settingsBtn">⚙️</button>
+            <div class="profile-avatar" id="profileAvatar"><span id="avatarLetter">U</span></div>
+            <div id="profileDropdown" class="profile-dropdown hidden">
+                <a href="account.html">My Account</a><a href="subscription.html">Subscription</a><hr><a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="subscription-header">
+            <h1>Choose Your Plan</h1>
+            <p>Stream unlimited movies and series</p>
+        </div>
+
+        <div class="live-social-proof" id="liveSocialProof">
+            <div class="proof-message" id="proofMessage">🔥 Loading...</div>
+        </div>
+
+        <div class="plans-container" id="plansContainer">
+            <!-- Daily Plan -->
+            <div class="plan-card" data-plan="daily">
+                <div class="plan-header">
+                    <h3>Daily Plan</h3>
+                    <div class="plan-price"><span class="currency">UGX</span><span id="priceDaily">1600</span></div>
+                    <span class="plan-period">/24 hours</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ Reduced ads</li>
+                    <li>✅ 5 movies/day limit</li>
+                    <li>✅ 720p quality</li>
+                    <li>❌ No downloads</li>
+                </ul>
+                <button class="plan-select-btn" data-plan="daily">Select Plan</button>
+            </div>
+
+            <!-- Weekly Plan -->
+            <div class="plan-card" data-plan="weekly">
+                <div class="plan-header">
+                    <h3>Weekly Plan</h3>
+                    <div class="plan-price"><span class="currency">UGX</span><span id="priceWeekly">6000</span></div>
+                    <span class="plan-period">/7 days</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ Minimal ads</li>
+                    <li>✅ 25 movies/week</li>
+                    <li>✅ 1080p quality</li>
+                    <li>✅ 5 downloads</li>
+                </ul>
+                <button class="plan-select-btn" data-plan="weekly">Select Plan</button>
+            </div>
+
+            <!-- Monthly Plan - MOST POPULAR -->
+            <div class="plan-card popular" data-plan="monthly">
+                <div class="popular-badge">🔥 MOST POPULAR</div>
+                <div class="plan-header">
+                    <h3>Monthly Plan</h3>
+                    <div class="plan-price"><span class="currency">UGX</span><span id="priceMonthly">25000</span></div>
+                    <span class="plan-period">/30 days</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ Ad-free streaming</li>
+                    <li>✅ Unlimited movies</li>
+                    <li>✅ 4K quality available</li>
+                    <li>✅ 50 downloads</li>
+                    <li>✅ Early access to new releases</li>
+                </ul>
+                <button class="plan-select-btn" data-plan="monthly">Select Plan</button>
+            </div>
+
+            <!-- Lifetime Plan - BEST DEAL -->
+            <div class="plan-card best-deal" data-plan="lifetime">
+                <div class="best-deal-badge">👑 BEST DEAL</div>
+                <div class="plan-header">
+                    <h3>Lifetime Plan</h3>
+                    <div class="plan-price"><span class="currency">UGX</span><span id="priceLifetime">55000</span></div>
+                    <span class="plan-period">/forever</span>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ Ad-free forever</li>
+                    <li>✅ Unlimited everything</li>
+                    <li>✅ 4K + HDR quality</li>
+                    <li>✅ Unlimited downloads</li>
+                    <li>✅ Lifetime early supporter badge</li>
+                    <li>✅ Priority support</li>
+                </ul>
+                <button class="plan-select-btn" data-plan="lifetime">Select Plan</button>
+            </div>
+        </div>
+
+        <div class="urgency-timer" id="urgencyTimer" style="display:none">
+            <div class="timer-content">
+                <span class="timer-icon">⏳</span>
+                <span id="countdownText"></span>
+            </div>
+        </div>
+
+        <div class="trust-badges" id="trustBadges"></div>
+
+        <div class="guarantee-banner" id="guaranteeBanner"></div>
+
+        <div class="testimonials-slider" id="testimonialsSlider">
+            <div class="testimonial-track" id="testimonialTrack"></div>
+        </div>
+
+        <div class="comparison-table">
+            <h3>Compare Plans</h3>
+            <table>
+                <thead><tr><th>Feature</th><th>FREE USER</th><th>PREMIUM USER</th></tr></thead>
+                <tbody>
+                    <tr><td>Streaming</td><td>Limited (3/day)</td><td>Unlimited</td></tr>
+                    <tr><td>Ads</td><td>Yes</td><td>Ad-free</td></tr>
+                    <tr><td>Quality</td><td>480p</td><td>Up to 4K</td></tr>
+                    <tr><td>Downloads</td><td>0</td><td>Unlimited</td></tr>
+                    <tr><td>Early Access</td><td>❌</td><td>✅</td></tr>
+                    <tr><td>VIP Badges</td><td>❌</td><td>✅</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="payment-section hidden" id="paymentSection">
+            <div class="selected-plan-info" id="selectedPlanInfo"></div>
+            <div class="payment-instructions">
+                <h4>Payment Instructions</h4>
+                <div class="payment-method">
+                    <h5>📱 MTN Mobile Money</h5>
+                    <p>Dial: <strong>*165#</strong> and send to <strong>0766051929</strong></p>
+                </div>
+                <div class="payment-method">
+                    <h5>📱 Airtel Money</h5>
+                    <p>Dial: <strong>*185#</strong> and send to <strong>0704557858</strong></p>
+                </div>
+                <p class="payment-note">Send exact amount, take screenshot, then click "I Have Paid"</p>
+                <button id="iHavePaidBtn" class="btn-primary whatsapp-btn">💬 I Have Paid</button>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-item" onclick="location.href='index.html'"><span class="nav-icon">🏠</span><span class="nav-label">Home</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='search.html'"><span class="nav-icon">🔍</span><span class="nav-label">Search</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='series.html'"><span class="nav-icon">📺</span><span class="nav-label">Series</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='downloads.html'"><span class="nav-icon">⬇️</span><span class="nav-label">Downloads</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='account.html'"><span class="nav-icon">👤</span><span class="nav-label">Account</span><span class="nav-dot"></span></button>
+    </nav>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="settingsModal" class="modal hidden"><div class="modal-content glass"><div class="modal-header"><h2>Settings</h2><button class="close-modal">&times;</button></div><div class="modal-body"><div class="settings-section"><h3>Appearance</h3><label><input type="radio" name="theme" value="dark"> Dark Mode</label><label><input type="radio" name="theme" value="light"> Light Mode</label></div><div id="adminSection" style="display:none"><h3>Admin</h3><button id="forceSyncBtn">Force Sync</button></div></div></div></div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

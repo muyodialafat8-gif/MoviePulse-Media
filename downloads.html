@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>MoviePulse - My Downloads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark">
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <img src="assets/logo.png" alt="MoviePulse" class="loading-logo">
+            <h1 class="loading-title">MOVIEPULSE</h1>
+            <div class="loading-dots"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="nav-left"><img src="assets/logo.png" class="nav-logo" onclick="location.href='index.html'"></div>
+        <div class="nav-right">
+            <button class="nav-icon-btn" onclick="location.href='search.html'">🔍</button>
+            <button class="nav-icon-btn" id="settingsBtn">⚙️</button>
+            <div class="profile-avatar" id="profileAvatar"><span id="avatarLetter">U</span></div>
+            <div id="profileDropdown" class="profile-dropdown hidden">
+                <a href="account.html">My Account</a><a href="subscription.html">Subscription</a><hr><a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="downloads-header">
+            <h1>My Downloads</h1>
+            <p>Watch movies offline, anytime</p>
+            <div class="storage-info" id="storageInfo">
+                <span id="storageUsed">0 MB</span> / <span id="storageLimit">2 GB</span> used
+            </div>
+        </div>
+
+        <div id="downloadsGrid" class="downloads-grid">
+            <!-- Downloads will appear here dynamically -->
+        </div>
+
+        <div id="emptyDownloads" class="empty-state hidden">
+            <div class="empty-icon">⬇️</div>
+            <h3>No Downloads Yet</h3>
+            <p>Download movies to watch offline</p>
+            <button onclick="location.href='index.html'" class="btn-primary">Browse Movies</button>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-item" onclick="location.href='index.html'"><span class="nav-icon">🏠</span><span class="nav-label">Home</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='search.html'"><span class="nav-icon">🔍</span><span class="nav-label">Search</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='series.html'"><span class="nav-icon">📺</span><span class="nav-label">Series</span><span class="nav-dot"></span></button>
+        <button class="nav-item active" onclick="location.href='downloads.html'"><span class="nav-icon">⬇️</span><span class="nav-label">Downloads</span><span class="nav-dot"></span></button>
+        <button class="nav-item" onclick="location.href='account.html'"><span class="nav-icon">👤</span><span class="nav-label">Account</span><span class="nav-dot"></span></button>
+    </nav>
+
+    <!-- Download Progress Modal -->
+    <div id="downloadProgressModal" class="modal hidden">
+        <div class="modal-content glass">
+            <h3>Downloading...</h3>
+            <div class="progress-bar large">
+                <div class="progress-fill" id="downloadProgressFill" style="width:0%"></div>
+            </div>
+            <p id="downloadProgressText">0%</p>
+            <button id="cancelDownloadBtn" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirmDeleteModal" class="modal hidden">
+        <div class="modal-content glass">
+            <h3>Delete Download?</h3>
+            <p>This will remove the movie from your device and free up storage.</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteBtn" class="btn-danger">Delete</button>
+                <button class="close-modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="settingsModal" class="modal hidden"><div class="modal-content glass"><div class="modal-header"><h2>Settings</h2><button class="close-modal">&times;</button></div><div class="modal-body"><div class="settings-section"><h3>Downloads</h3><label><input type="checkbox" id="wifiOnly"> Download over Wi-Fi only</label><label><input type="checkbox" id="autoDeleteWatched"> Auto-delete watched after 7 days</label><select id="maxStorage"><option value="2">2 GB limit</option><option value="5">5 GB limit</option><option value="0">Unlimited</option></select></div><div id="adminSection" style="display:none"><h3>Admin</h3><button id="forceSyncBtn">Force Sync</button></div></div></div></div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
